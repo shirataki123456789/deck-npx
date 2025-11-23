@@ -1,218 +1,214 @@
 // src/utils.ts
-import { Card, DeckList, FilterState } from './types';
+import { Card, DeckList, FilterState, ALL_COLORS, TYPE_PRIORITY } from './types';
 
 let allCards: Card[] = [];
 const DECK_STORAGE_PREFIX = 'deckbuilder_';
 const DECK_NAMES_KEY = 'deckbuilder_names';
 
 // ===============================================
-// 💡 最終ソート順序の定義
+// 🧠 Python版ロジックの完全再現: ソート
 // ===============================================
 
-// 1. 色の優先順位: 赤 → 緑 → 青 → 紫 → 黒 → 黄
-const COLOR_ORDER = ['赤', '緑', '青', '紫', '黒', '黄', '無色', '']; 
-
-// 2. タイプの優先順位: LEADER → CHARACTER → EVENT → STAGE
-const TYPE_ORDER = ['LEADER', 'CHARACTER', 'EVENT', 'STAGE', '']; 
+// 色の優先順位 (Python: color_priority)
+const COLOR_MAP: Record<string, number> = {
+    '赤': 0, '緑': 1, '青': 2, '紫': 3, '黒': 4, '黄': 5
+};
 
 /**
- * カードの色からソートキーを取得するヘルパー関数
- * 混色カードはすべてリーダーカードであることを前提に、単色リーダーの後にグループ化します。
- * @returns [プライマリソートインデックス, セカンダリソートインデックス] のタプル
+ * Pythonの `color_sort_key` を再現
+ * 戻り値: [base_priority, type_rank, sub_priority, multi_flag]
  */
-function getColorSortKeys(colorStr: string): [number, number] {
-    if (!colorStr) return [COLOR_ORDER.indexOf(''), 0];
-
-    // 色を '/' で分割し、空文字を削除
-    const colors = colorStr.split('/').map(c => c.trim()).filter(c => c !== '');
+function getSortKeys(card: Card): [number, number, number, number] {
+    const colorText = card.Color || '';
+    const typeText = card.Type || '';
     
-    // 単色カードの場合 (colors.length === 1)
-    if (colors.length === 1) {
-        // プライマリキー: 基本色のインデックス
-        const primaryKey = COLOR_ORDER.indexOf(colors[0]);
-        // セカンダリキー: 0 (単色を混色より前に配置)
-        return [primaryKey, 0];
+    // 色がない場合のフォールバック
+    if (!colorText || colorText === '-') return [999, 999, 999, 999];
+
+    // 色リストの解析 (例: "赤/緑" -> ["赤", "緑"])
+    const foundColors = ALL_COLORS.filter(c => colorText.includes(c));
+    
+    if (foundColors.length === 0) return [999, 999, 999, 999];
+
+    const firstColor = foundColors[0];
+    const basePriority = COLOR_MAP[firstColor] ?? 999;
+
+    // 多色判定
+    const isMulti = colorText.includes('/') || colorText.includes('／');
+    const subColors = foundColors.filter(c => c !== firstColor);
+    
+    // サブカラーの優先度 (多色の場合のみ計算、単色は0)
+    let subPriority = 0;
+    if (isMulti && subColors.length > 0) {
+        subPriority = ALL_COLORS.indexOf(subColors[0]) + 1;
     }
     
-    // 混色（多色）カードの場合 (colors.length >= 2)
-    if (colors.length >= 2) {
-        const primaryColor = colors[0];
-        const secondaryColor = colors[1];
-        
-        // 💡 混色グループのプライマリキーを設定 (単色グループの次に来る大きな値)
-        // COLOR_ORDER.length を使用することで、すべての単色(0～6)の後に続く
-        const primaryKey = COLOR_ORDER.length; 
-        
-        // 混色内でのソートは、第一色（100倍）と第二色（1倍）の結合インデックスで行う
-        const firstColorIndex = COLOR_ORDER.indexOf(primaryColor);
-        const secondColorIndex = COLOR_ORDER.indexOf(secondaryColor);
+    const multiFlag = isMulti ? 1 : 0;
 
-        const secondaryKey = (firstColorIndex * 100) + secondColorIndex;
-        
-        // 混色グループを primaryKey (7) の位置に配置し、
-        // secondaryKey で 第一色 → 第二色の優先順位を適用
-        return [primaryKey, secondaryKey]; 
-    }
+    // タイプランク (LEADER=0, CHARACTER=1...)
+    let typeRank = TYPE_PRIORITY.indexOf(typeText);
+    if (typeRank === -1) typeRank = 9;
 
-    // その他の特殊なケース
-    return [COLOR_ORDER.indexOf(colorStr), 0];
+    return [basePriority, typeRank, subPriority, multiFlag];
 }
 
-
 /**
- * カードをソートするための最終的な比較関数
- * 優先順位: 1. Color (Primary) -> 2. Color (Secondary) -> 3. Type -> 4. Cost -> 5. ID
+ * カードソート関数
+ * Python: values.sort(key=lambda x: x["new_sort_key"])
+ * new_sort_key = (type_rank, cost, base_priority, card_id) ※デッキ表示時
+ * ここでは汎用的なリスト表示順（色優先）を実装します
  */
 function cardSorter(a: Card, b: Card): number {
-    // 1. Color (色) の比較
-    const [primaryA, secondaryA] = getColorSortKeys(a.Color || '');
-    const [primaryB, secondaryB] = getColorSortKeys(b.Color || '');
+    const keyA = getSortKeys(a);
+    const keyB = getSortKeys(b);
 
-    // 1.1 プライマリカラー (単色グループ vs 混色グループ) で比較
-    if (primaryA !== primaryB) {
-        return primaryA - primaryB;
-    }
+    // 1. Base Priority (主色)
+    if (keyA[0] !== keyB[0]) return keyA[0] - keyB[0];
+
+    // 2. Type Rank (タイプ)
+    if (keyA[1] !== keyB[1]) return keyA[1] - keyB[1];
     
-    // 1.2 セカンダリカラー (単色内での順序 or 混色内での第一色/第二色順序) で比較
-    if (secondaryA !== secondaryB) {
-        return secondaryA - secondaryB;
-    }
+    // 3. Sub Priority (副色)
+    if (keyA[2] !== keyB[2]) return keyA[2] - keyB[2];
 
-    // 2. Type (タイプ) でソート
-    // 修正後の順序: LEADER → CHARACTER → EVENT → STAGE
-    const typeA = a.Type || '';
-    const typeB = b.Type || '';
-    const typeIndexA = TYPE_ORDER.indexOf(typeA.toUpperCase()); 
-    const typeIndexB = TYPE_ORDER.indexOf(typeB.toUpperCase());
-    if (typeIndexA !== typeIndexB) {
-        return typeIndexA - typeIndexB;
-    }
-    
-    // 3. Cost (コスト) でソート (昇順)
-    const costA = a.Cost || 0;
-    const costB = b.Cost || 0;
-    if (costA !== costB) {
-        return costA - costB;
-    }
+    // 4. Multi Flag (多色フラグ)
+    if (keyA[3] !== keyB[3]) return keyA[3] - keyB[3];
 
-    // 4. ID (カードID) でソート (昇順)
+    // 5. Cost (コスト)
+    if (a.Cost !== b.Cost) return a.Cost - b.Cost;
+
+    // 6. ID
     return a.ID.localeCompare(b.ID);
 }
 
+// デッキ画像生成用などのために、デッキ内ソート順序もエクスポート
+export function deckSorter(a: Card, b: Card): number {
+    const keyA = getSortKeys(a);
+    const keyB = getSortKeys(b);
+    
+    // Pythonのデッキソート順: (type_rank, cost, base_priority, card_id)
+    // keyA/B = [base, type, sub, multi]
+    
+    // 1. Type
+    if (keyA[1] !== keyB[1]) return keyA[1] - keyB[1];
+    // 2. Cost
+    if (a.Cost !== b.Cost) return a.Cost - b.Cost;
+    // 3. Base Color
+    if (keyA[0] !== keyB[0]) return keyA[0] - keyB[0];
+    // 4. ID
+    return a.ID.localeCompare(b.ID);
+}
 
-/**
- * カードデータをロードする関数 (ロード時にソートを実行)
- */
+// ===============================================
+// 🔍 データロード & フィルタリング
+// ===============================================
+
 export async function loadCardData(): Promise<Card[]> { 
-    if (allCards.length > 0) {
-        return allCards;
-    }
+    if (allCards.length > 0) return allCards;
     try {
-        // カードリストJSONの読み込み
-        const response = await fetch('/cardlist.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        const response = await fetch('/cardlist.json'); // 事前にpublicに配置が必要
         const data: Card[] = await response.json();
         
-        // 読み込んだデータを並べ替えロジックでソート
-        data.sort(cardSorter); 
-        
-        allCards = data;
-        return data;
+        // データの整形（Pythonのload_data相当）
+        const processedData = data.map(card => ({
+            ...card,
+            // シリーズIDの抽出ロジック再現
+            SeriesID: card.Acquisition?.match(/【(.*?)】/)?.[1] || "その他",
+            // 配列項目の正規化
+            Attribute: card.Attribute?.replace(/／/g, '/') || '',
+            Feature: card.Feature?.replace(/／/g, '/') || ''
+        }));
+
+        processedData.sort(cardSorter);
+        allCards = processedData;
+        return processedData;
     } catch (error) {
         console.error("Error loading card data:", error);
         return [];
     }
 }
 
-/**
- * デッキリストを保存する関数
- */
+export function filterCards(cards: Card[], filters: FilterState, leaderId: string | null = null): Card[] {
+    // リーダーが設定されている場合の色フィルタリング用
+    let validColors: string[] = [];
+    if (leaderId) {
+        const leader = cards.find(c => c.ID === leaderId);
+        if (leader) {
+            validColors = leader.Color.replace(/／/g, '/').split('/').filter(Boolean);
+        }
+    }
+
+    return cards.filter(card => {
+        // 1. パラレルモード (Normal / Parallel / Both)
+        if (filters.parallel_mode === 'normal' && card.is_parallel) return false;
+        if (filters.parallel_mode === 'parallel' && !card.is_parallel) return false;
+
+        // 2. リーダー色縛り (デッキ作成モード時)
+        // Python版では「リーダーがいるなら、LEADER以外のカードはリーダーの色を含む必要がある」
+        if (leaderId && !card.Type.includes('LEADER')) {
+            const cardColors = card.Color.replace(/／/g, '/').split('/');
+            const hasMatch = cardColors.some(c => validColors.includes(c));
+            if (!hasMatch) return false;
+        }
+
+        // 3. 基本フィルタ
+        if (filters.search_query) {
+            const q = filters.search_query.toLowerCase();
+            const match = 
+                card.Name.toLowerCase().includes(q) || 
+                card.Effect?.toLowerCase().includes(q) || 
+                card.Feature?.toLowerCase().includes(q) ||
+                card.Trigger?.toLowerCase().includes(q);
+            if (!match) return false;
+        }
+
+        // Color (配列チェック)
+        if (filters.color.length > 0) {
+            const cardColors = card.Color.replace(/／/g, '/').split('/');
+            if (!filters.color.some(c => cardColors.includes(c))) return false;
+        }
+
+        // Type
+        if (filters.card_type.length > 0 && !filters.card_type.includes(card.Type)) return false;
+
+        // Cost (複数選択)
+        if (filters.cost.length > 0 && !filters.cost.includes(card.Cost)) return false;
+
+        // Counter
+        if (filters.counter.length > 0 && (card.Counter === null || !filters.counter.includes(card.Counter))) return false;
+
+        // Attribute
+        if (filters.attribute.length > 0) {
+             const attrs = card.Attribute.split('/');
+             if (!filters.attribute.some(a => attrs.includes(a))) return false;
+        }
+
+        // Feature
+        if (filters.feature.length > 0) {
+            const feats = card.Feature.split('/');
+            if (!filters.feature.some(f => feats.includes(f))) return false;
+        }
+
+        // SeriesID
+        if (filters.series_id.length > 0 && !filters.series_id.includes(card.SeriesID)) return false;
+
+        return true;
+    });
+}
+
+// 保存・読込関連は以前と同じため省略（必要なら追加します）
 export function saveDeckList(name: string, deckList: DeckList, leaderId: string | null): void {
     const key = DECK_STORAGE_PREFIX + name;
     localStorage.setItem(key, JSON.stringify({ deckList, leaderId }));
-
-    const savedNames = JSON.parse(localStorage.getItem(DECK_NAMES_KEY) || '[]');
+    const savedNames = getSavedDeckNames();
     if (!savedNames.includes(name)) {
         savedNames.push(name);
         localStorage.setItem(DECK_NAMES_KEY, JSON.stringify(savedNames));
     }
 }
-
-/**
- * デッキリストをロードする関数
- */
-export function loadDeckList(name: string): { deckList: DeckList, leaderId: string | null } | null { 
-    const key = DECK_STORAGE_PREFIX + name;
-    const item = localStorage.getItem(key);
-    if (item) {
-        return JSON.parse(item);
-    }
-    return null;
+export function loadDeckList(name: string) { 
+    return JSON.parse(localStorage.getItem(DECK_STORAGE_PREFIX + name) || 'null'); 
 }
-
-/**
- * 保存されたデッキ名を取得する関数
- */
 export function getSavedDeckNames(): string[] { 
-    return JSON.parse(localStorage.getItem(DECK_NAMES_KEY) || '[]');
-}
-
-/**
- * カードリストをフィルタリングする関数
- */
-export function filterCards(cards: Card[], filters: FilterState): Card[] {
-    return cards.filter(card => {
-        // 1. 検索キーワード (Name/Effect/Feature)
-        if (filters.search_query) {
-            const query = filters.search_query.toLowerCase();
-            const nameMatch = card.Name.toLowerCase().includes(query);
-            const effectMatch = card.Effect?.toLowerCase().includes(query);
-            const featureMatch = card.Feature?.toLowerCase().includes(query);
-            if (!nameMatch && !effectMatch && !featureMatch) return false;
-        }
-
-        // 2. 色フィルタ
-        if (filters.color.length > 0) {
-            // 多色カードに対応するため、カードの色を配列として扱う
-            const cardColors = card.Color?.split('/').map(c => c.trim()) || [];
-            // フィルタのいずれかの色にカードの色が含まれていればOK
-            if (!filters.color.some(fColor => cardColors.includes(fColor))) return false;
-        }
-
-        // 3. レアリティフィルタ
-        if (filters.rarity.length > 0 && !filters.rarity.includes(card.Rarity)) return false;
-
-        // 4. コストフィルタ
-        if (filters.cost_min !== null && card.Cost < filters.cost_min) return false;
-        if (filters.cost_max !== null && card.Cost > filters.cost_max) return false;
-
-        // 5. BPフィルタ
-        if (filters.bp_min !== null && card.BP < filters.bp_min) return false;
-        if (filters.bp_max !== null && card.BP > filters.bp_max) return false;
-
-        // 6. カードタイプフィルタ
-        if (filters.card_type.length > 0 && !filters.card_type.includes(card.Type)) return false;
-
-        // 7. パラレルフィルタ
-        if (filters.is_parallel_only && !card.is_parallel) return false;
-        
-        // 属性フィルタ
-        if (filters.attribute.length > 0 && !filters.attribute.includes(card.Attribute)) return false;
-        
-        // ブロックアイコンフィルタ
-        if (filters.block_icon.length > 0 && !filters.block_icon.includes(card.BlockIcon)) return false;
-        
-        // トリガーフィルタ
-        if (filters.trigger.length > 0 && !filters.trigger.includes(card.Trigger)) return false;
-
-        // カウンター範囲フィルタ
-        if (card.Counter !== null) {
-            if (filters.counter_min !== null && card.Counter < filters.counter_min) return false;
-            if (filters.counter_max !== null && card.Counter > filters.counter_max) return false;
-        }
-
-        return true;
-    });
+    return JSON.parse(localStorage.getItem(DECK_NAMES_KEY) || '[]'); 
 }

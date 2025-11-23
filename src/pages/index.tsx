@@ -1,28 +1,24 @@
 // src/pages/index.tsx
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+import { Card, AppState, FilterState } from '../types';
 import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
 import { CardItem } from '../components/CardItem';
-import { FilterControls } from '../components/FilterControls';
-import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
+import { FilterControls, FilterOptions } from '../components/FilterControls'; // FilterOptionsをインポート
+import { DeckManager } from '../components/DeckManager';
 
 const INITIAL_FILTER_STATE: FilterState = {
   search_query: '',
   color: [],
   rarity: [],
-  cost_min: null,
-  cost_max: null,
-  bp_min: null,
-  bp_max: null,
+  cost: [],
   card_type: [],
-  is_parallel_only: false,
-  
+  parallel_mode: 'normal',
   attribute: [],
-  counter_min: null,
-  counter_max: null,
+  counter: [],
   block_icon: [],
   feature: [],
-  trigger: [],
+  series_id: [],
+  trigger: []
 };
 
 const INITIAL_APP_STATE: AppState = {
@@ -31,19 +27,16 @@ const INITIAL_APP_STATE: AppState = {
 };
 
 const Home: React.FC = () => {
-  // 💡 修正: すべてのState変数を定義
   const [allCards, setAllCards] = useState<Card[]>([]);
   const [appState, setAppState] = useState<AppState>(INITIAL_APP_STATE);
   const [filterState, setFilterState] = useState<FilterState>(INITIAL_FILTER_STATE);
   const [loading, setLoading] = useState(true);
   const [savedDeckNames, setSavedDeckNames] = useState<string[]>([]);
   
-  // デッキの合計枚数を計算
   const deckCount = useMemo(() => {
     return Object.values(appState.deck).reduce((sum: number, count: number) => sum + count, 0);
   }, [appState.deck]);
 
-  // 全カードデータをロード
   useEffect(() => {
     const fetchCards = async () => {
       setLoading(true);
@@ -55,7 +48,47 @@ const Home: React.FC = () => {
     fetchCards();
   }, []);
 
-  // 💡 修正: すべてのデッキ操作関数を定義
+  // 💡 Python版のロジック再現: 全カードデータから選択肢を動的に生成
+  const filterOptions = useMemo<FilterOptions>(() => {
+    if (allCards.length === 0) {
+      return { costs: [], counters: [], attributes: [], features: [], blockIcons: [], seriesIds: [], triggers: [] };
+    }
+
+    // 重複排除とソート用ヘルパー
+    const uniqueSortedNumbers = (arr: (number|null)[]) => Array.from(new Set(arr.filter((v): v is number => v !== null))).sort((a, b) => a - b);
+    const uniqueSortedStrings = (arr: string[]) => Array.from(new Set(arr.filter(Boolean))).sort();
+
+    // コスト: sorted(df["コスト数値"].unique())
+    const costs = uniqueSortedNumbers(allCards.map(c => c.Cost));
+
+    // カウンター: sorted(df["カウンター"].unique())
+    // データがない場合は0として扱うロジックが含まれる場合がありますが、ここでは数値として存在するものを抽出
+    const counters = uniqueSortedNumbers(allCards.map(c => c.Counter));
+
+    // 属性: "打/斬" のように / 区切りで格納されているため展開して集計
+    // sorted({attr for lst in df["属性リスト"] for attr in lst if attr})
+    const attributes = uniqueSortedStrings(
+        allCards.flatMap(c => (c.Attribute || '').split('/'))
+    );
+
+    // 特徴: 同様に展開
+    const features = uniqueSortedStrings(
+        allCards.flatMap(c => (c.Feature || '').split('/'))
+    );
+    
+    // ブロックアイコン
+    const blockIcons = uniqueSortedStrings(allCards.map(c => c.BlockIcon));
+    
+    // 入手シリーズ (utils.tsですでに【】の中身だけ抽出済み)
+    const seriesIds = uniqueSortedStrings(allCards.map(c => c.SeriesID));
+
+    // トリガー
+    const triggers = uniqueSortedStrings(allCards.map(c => c.Trigger));
+
+    return { costs, counters, attributes, features, blockIcons, seriesIds, triggers };
+  }, [allCards]);
+
+
   const handleSaveDeck = useCallback((name: string) => {
     if (!name.trim()) {
       alert("デッキ名を指定してください。");
@@ -92,6 +125,10 @@ const Home: React.FC = () => {
   }, [setAppState]);
 
   const handleGenerateImage = useCallback(async () => {
+      if (!appState.leaderCardId) {
+          alert("リーダーカードが設定されていません。");
+          return;
+      }
       try {
           const response = await fetch('/api/image-generator', {
               method: 'POST',
@@ -100,7 +137,9 @@ const Home: React.FC = () => {
               },
               body: JSON.stringify({ 
                   deck: appState.deck, 
-                  leaderId: appState.leaderCardId 
+                  leaderId: appState.leaderCardId,
+                  // allCardsをAPIに渡す必要がある場合はここで渡す
+                  allCards: allCards 
               }),
           });
 
@@ -109,7 +148,6 @@ const Home: React.FC = () => {
           }
 
           const blob = await response.blob();
-          
           const url = window.URL.createObjectURL(blob);
           const a = document.createElement('a');
           a.href = url;
@@ -123,22 +161,21 @@ const Home: React.FC = () => {
           console.error("画像生成エラー:", error);
           alert("デッキ画像の生成に失敗しました。");
       }
-  }, [appState.deck, appState.leaderCardId]);
+  }, [appState.deck, appState.leaderCardId, allCards]);
 
-
-  // デッキカウント更新ロジック
   const updateDeckCount = useCallback((cardId: string, delta: number) => {
     setAppState(prevState => {
       const newDeck = { ...prevState.deck };
       const currentCount = newDeck[cardId] || 0;
+      
+      const card = allCards.find(c => c.ID === cardId);
+      const isLeader = card?.Type.includes('LEADER');
+
       let newCount = currentCount + delta;
 
-      // 4枚制限 (リーダーは例外)
-      const isLeader = allCards.find(c => c.ID === cardId)?.Type.includes('LEADER');
       if (newCount > 4 && !isLeader) {
           newCount = 4;
       } else if (newCount > 1 && isLeader) {
-          // リーダーは1枚制限
           newCount = 1; 
       }
       
@@ -150,7 +187,6 @@ const Home: React.FC = () => {
         newDeck[cardId] = newCount;
       }
       
-      // リーダー設定ロジック
       let newLeaderId = prevState.leaderCardId;
       if (isLeader) {
         if (newCount > 0) {
@@ -164,18 +200,13 @@ const Home: React.FC = () => {
     });
   }, [allCards]);
 
-  // フィルタリングされたカードリスト
   const filteredCards = useMemo(() => {
-    return filterCards(allCards, filterState);
-  }, [allCards, filterState]);
-
+    return filterCards(allCards, filterState, appState.leaderCardId);
+  }, [allCards, filterState, appState.leaderCardId]);
 
   return (
-    // 💡 修正されたレイアウトを再適用
     <div className="container mx-auto p-4">
         <div className="flex flex-col lg:flex-row lg:space-x-6">
-            
-            {/* サイドバー */}
             <div className="w-full lg:w-1/4 space-y-4 mb-6 lg:mb-0">
                 <DeckManager
                     appState={appState}
@@ -190,10 +221,10 @@ const Home: React.FC = () => {
                 <FilterControls
                     filterState={filterState}
                     setFilterState={setFilterState}
+                    options={filterOptions} // 💡 ここで計算したオプションを渡す
                 />
             </div>
 
-            {/* メインコンテンツ */}
             <div className="w-full lg:w-3/4">
                 <h2 className="text-2xl font-bold mb-4">カードリスト ({deckCount}/50)</h2>
                 {loading ? (

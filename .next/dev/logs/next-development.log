@@ -1,441 +1,448 @@
-[00:00:00.794] Server  LOG     
-[00:00:00.794] Server  LOG        We detected TypeScript in your project and created a tsconfig.json file for you.
-[00:00:00.917] Server  LOG      ✓ Ready in 638ms
-[00:00:39.719] Server  LOG      ○ Compiling / ...
-[00:01:36.680] Browser ERROR   QRインポートエラー: {}
-[00:04:11.366] Server  LOG      ✓ Compiled in 17ms
-[00:06:56.357] Server  LOG      ✓ Compiled in 30ms
-[00:06:56.613] Browser LOG     Refreshing page data due to server-side change
-[00:06:56.613] Browser ERROR   %o
+[00:00:07.487] Server  LOG      ✓ Ready in 6.3s
+[00:00:16.795] Server  LOG      ○ Compiling / ...
+[00:00:20.201] Browser ERROR   uncaughtError: Error: ./src/components/FilterControls.tsx:3:1
+Export ALL_RARITIES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_RARITIES was not found in module [project]/src/types.ts [client] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+
+[00:00:20.386] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_RARITIES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_RARITIES was not found in module [project]/src/types.ts [client] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:00:20.386] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_RARITIES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_RARITIES was not found in module [project]/src/types.ts [ssr] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:00:20.386] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_TYPES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_TYPES was not found in module [project]/src/types.ts [client] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:00:20.386] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_TYPES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_TYPES was not found in module [project]/src/types.ts [ssr] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:00:20.492] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_RARITIES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_RARITIES was not found in module [project]/src/types.ts [client] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:00:20.492] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_RARITIES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_RARITIES was not found in module [project]/src/types.ts [ssr] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:00:20.492] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_TYPES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_TYPES was not found in module [project]/src/types.ts [client] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:00:20.492] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_TYPES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_TYPES was not found in module [project]/src/types.ts [ssr] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:00:20.613] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_RARITIES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_RARITIES was not found in module [project]/src/types.ts [client] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:00:20.613] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_RARITIES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_RARITIES was not found in module [project]/src/types.ts [ssr] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:00:20.613] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_TYPES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_TYPES was not found in module [project]/src/types.ts [client] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:00:20.613] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_TYPES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_TYPES was not found in module [project]/src/types.ts [ssr] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:02:29.647] Server  LOG      ✓ Compiled in 8ms
+[00:02:29.942] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_RARITIES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_RARITIES was not found in module [project]/src/types.ts [client] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:02:29.942] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_RARITIES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_RARITIES was not found in module [project]/src/types.ts [ssr] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:02:29.943] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_TYPES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_TYPES was not found in module [project]/src/types.ts [client] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:02:29.943] Browser ERROR   ./src/components/FilterControls.tsx:3:1
+Export ALL_TYPES doesn't exist in target module
+  1 | // src/components/FilterControls.tsx
+  2 | import React, { ChangeEvent } from 'react';
+> 3 | import { FilterState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | // 💡 暫定の全選択肢 (実際には cardlist.json から動的に取得することが望ましい)
+  6 | const ALL_ATTRIBUTES = ['斬', '打', '射', '特']; // 属性の例
+
+The export ALL_TYPES was not found in module [project]/src/types.ts [ssr] (ecmascript).
+Did you mean to import ALL_COLORS?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Browser:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+
+  SSR:
+    ./src/components/FilterControls.tsx
+    ./src/pages/index.tsx
+[00:02:33.256] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:02:34.557] Browser ERROR   %o
 
 %s
 
 %s
  {} The above error occurred in the <Home> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
-[00:08:04.639] Server  LOG      ✓ Compiled in 52ms
-[00:08:04.768] Browser LOG     Refreshing page data due to server-side change
-[00:09:16.794] Server  LOG      ✓ Compiled in 38ms
-[00:09:17.087] Browser ERROR   ./src/pages/index.tsx:4:1
-Export filterCards doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
+[00:03:31.061] Server  LOG      ✓ Compiled in 29ms
+[00:03:44.786] Server  LOG      ✓ Compiled in 29ms
+[00:08:15.317] Server  LOG      ✓ Compiled in 21ms
+[00:08:15.639] Browser ERROR   %o
 
-The export filterCards was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:17.087] Browser ERROR   ./src/pages/index.tsx:4:1
-Export filterCards doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
+%s
 
-The export filterCards was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:17.087] Browser ERROR   ./src/pages/index.tsx:4:1
-Export getSavedDeckNames doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
+%s
+ {} The above error occurred in the <FilterControls> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:08:27.681] Server  LOG      ✓ Compiled in 35ms
+[00:09:41.279] Browser ERROR   QRインポートエラー: {}
+[00:12:44.379] Server  LOG      ✓ Compiled in 16ms
+[00:12:44.574] Browser LOG     Refreshing page data due to server-side change
+[00:12:44.574] Browser ERROR   ./src/pages/index.tsx:220:26
+Parsing ecmascript source code failed
+  218 |                 ) : (
+  219 |                     {/* 💡 修正: グリッドのレスポンシブ設定を調整し、モバイルでも列数を確保 */}
+> 220 |                     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+      |                          ^^^^^^^^^
+  221 |                         {filteredCards.map(card => {
+  222 |                             const currentCount = appState.deck[card.ID] || 0;
+  223 |                             const isLeader = card.Type.includes('LEADER');
 
-The export getSavedDeckNames was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:17.087] Browser ERROR   ./src/pages/index.tsx:4:1
-Export getSavedDeckNames doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
+Expected '</', got 'className'
+[00:12:50.381] Browser ERROR   uncaughtError: Error: ./src/pages/index.tsx:220:26
+Parsing ecmascript source code failed
+  218 |                 ) : (
+  219 |                     {/* 💡 修正: グリッドのレスポンシブ設定を調整し、モバイルでも列数を確保 */}
+> 220 |                     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+      |                          ^^^^^^^^^
+  221 |                         {filteredCards.map(card => {
+  222 |                             const currentCount = appState.deck[card.ID] || 0;
+  223 |                             const isLeader = card.Type.includes('LEADER');
 
-The export getSavedDeckNames was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:17.087] Browser ERROR   ./src/pages/index.tsx:4:1
-Export loadDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
+Expected '</', got 'className'
 
-The export loadDeckList was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:17.087] Browser ERROR   ./src/pages/index.tsx:4:1
-Export loadDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
 
-The export loadDeckList was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:17.087] Browser ERROR   ./src/pages/index.tsx:4:1
-Export saveDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
+[00:12:50.487] Browser ERROR   ./src/pages/index.tsx:220:26
+Parsing ecmascript source code failed
+  218 |                 ) : (
+  219 |                     {/* 💡 修正: グリッドのレスポンシブ設定を調整し、モバイルでも列数を確保 */}
+> 220 |                     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+      |                          ^^^^^^^^^
+  221 |                         {filteredCards.map(card => {
+  222 |                             const currentCount = appState.deck[card.ID] || 0;
+  223 |                             const isLeader = card.Type.includes('LEADER');
 
-The export saveDeckList was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:17.087] Browser ERROR   ./src/pages/index.tsx:4:1
-Export saveDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
+Expected '</', got 'className'
+[00:12:50.609] Browser ERROR   ./src/pages/index.tsx:220:26
+Parsing ecmascript source code failed
+  218 |                 ) : (
+  219 |                     {/* 💡 修正: グリッドのレスポンシブ設定を調整し、モバイルでも列数を確保 */}
+> 220 |                     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+      |                          ^^^^^^^^^
+  221 |                         {filteredCards.map(card => {
+  222 |                             const currentCount = appState.deck[card.ID] || 0;
+  223 |                             const isLeader = card.Type.includes('LEADER');
 
-The export saveDeckList was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:21.354] Browser ERROR   ./src/pages/index.tsx:4:1
-Export filterCards doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export filterCards was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:21.354] Browser ERROR   ./src/pages/index.tsx:4:1
-Export filterCards doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export filterCards was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:21.354] Browser ERROR   ./src/pages/index.tsx:4:1
-Export getSavedDeckNames doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export getSavedDeckNames was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:21.354] Browser ERROR   ./src/pages/index.tsx:4:1
-Export getSavedDeckNames doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export getSavedDeckNames was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:21.354] Browser ERROR   ./src/pages/index.tsx:4:1
-Export loadDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export loadDeckList was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:21.354] Browser ERROR   ./src/pages/index.tsx:4:1
-Export loadDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export loadDeckList was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:21.354] Browser ERROR   ./src/pages/index.tsx:4:1
-Export saveDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export saveDeckList was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:21.354] Browser ERROR   ./src/pages/index.tsx:4:1
-Export saveDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export saveDeckList was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:29.098] Server  LOG      ✓ Compiled in 12ms
-[00:09:29.453] Browser ERROR   ./src/pages/index.tsx:4:1
-Export filterCards doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export filterCards was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:29.453] Browser ERROR   ./src/pages/index.tsx:4:1
-Export filterCards doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export filterCards was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:29.453] Browser ERROR   ./src/pages/index.tsx:4:1
-Export getSavedDeckNames doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export getSavedDeckNames was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:29.453] Browser ERROR   ./src/pages/index.tsx:4:1
-Export getSavedDeckNames doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export getSavedDeckNames was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:29.453] Browser ERROR   ./src/pages/index.tsx:4:1
-Export loadDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export loadDeckList was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:29.453] Browser ERROR   ./src/pages/index.tsx:4:1
-Export loadDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export loadDeckList was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:29.453] Browser ERROR   ./src/pages/index.tsx:4:1
-Export saveDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export saveDeckList was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:09:29.453] Browser ERROR   ./src/pages/index.tsx:4:1
-Export saveDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export saveDeckList was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:10:13.726] Server  LOG      ✓ Compiled in 19ms
-[00:16:21.419] Server  LOG      ✓ Compiled in 15ms
-[00:16:21.741] Browser ERROR   ./src/pages/index.tsx:4:1
-Export filterCards doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export filterCards was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:16:21.741] Browser ERROR   ./src/pages/index.tsx:4:1
-Export filterCards doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export filterCards was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:16:21.741] Browser ERROR   ./src/pages/index.tsx:4:1
-Export getSavedDeckNames doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export getSavedDeckNames was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:16:21.741] Browser ERROR   ./src/pages/index.tsx:4:1
-Export getSavedDeckNames doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export getSavedDeckNames was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:16:21.741] Browser ERROR   ./src/pages/index.tsx:4:1
-Export loadDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export loadDeckList was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:16:21.741] Browser ERROR   ./src/pages/index.tsx:4:1
-Export loadDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export loadDeckList was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:16:21.741] Browser ERROR   ./src/pages/index.tsx:4:1
-Export saveDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export saveDeckList was not found in module [project]/src/utils.ts [client] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:16:21.741] Browser ERROR   ./src/pages/index.tsx:4:1
-Export saveDeckList doesn't exist in target module
-  2 | import React, { useState, useEffect, useCallback, useMemo } from 'react';
-  3 | import { Card, DeckList, FilterState, AppState, ALL_COLORS, ALL_RARITIES, ALL_TYPES } from '../types';
-> 4 | import { loadCardData, saveDeckList, loadDeckList, getSavedDeckNames, filterCards } from '../utils';
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  5 | import { CardItem } from '../components/CardItem';
-  6 | import { FilterControls } from '../components/FilterControls';
-  7 | import { DeckManager } from '../components/DeckManager'; // 💡 修正: DeckManagerをインポート
-
-The export saveDeckList was not found in module [project]/src/utils.ts [ssr] (ecmascript).
-Did you mean to import loadCardData?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-[00:16:28.274] Server  LOG      ✓ Compiled in 18ms
-[00:17:00.500] Server  LOG      ✓ Compiled in 20ms
-[00:23:50.255] Server  LOG      ✓ Compiled in 12ms
-[00:25:39.252] Server  LOG      ✓ Compiled in 47ms
-[00:40:28.784] Browser ERROR   Error loading card data: {}
+Expected '</', got 'className'
+[00:12:57.729] Server  LOG      ✓ Compiled in 13ms
+[00:12:57.779] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:12:57.782] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.

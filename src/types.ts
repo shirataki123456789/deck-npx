@@ -1,7 +1,7 @@
 // src/types.ts
 
 /**
- * カードオブジェクトの型定義 (CSVの全項目を反映)
+ * カードオブジェクトの型定義
  */
 export interface Card {
   ID: string;
@@ -13,7 +13,7 @@ export interface Card {
   Type: string; 
   Effect: string; 
   
-  // 💡 CSVからの追加項目
+  // CSV/Python版にある追加項目
   Code: string; 
   Attribute: string; 
   Counter: number | null; 
@@ -21,6 +21,7 @@ export interface Card {
   Feature: string; 
   Trigger: string; 
   Acquisition: string; 
+  SeriesID: string; // 入手情報の【】内
   
   // 必須項目
   is_parallel: boolean;
@@ -32,7 +33,7 @@ export interface Card {
 /**
  * デッキリストの型定義
  */
-export type DeckList = Record<string, number>; // 👈 export
+export type DeckList = Record<string, number>;
 
 /**
  * フィルタリング条件の型定義
@@ -41,20 +42,17 @@ export interface FilterState {
   search_query: string;
   color: string[];
   rarity: string[];
-  cost_min: number | null;
-  cost_max: number | null;
-  bp_min: number | null;
-  bp_max: number | null;
+  cost: number[]; 
   card_type: string[];
-  is_parallel_only: boolean;
   
-  // 💡 CSVからの追加フィルター
+  parallel_mode: 'normal' | 'parallel' | 'both'; 
+  
   attribute: string[]; 
-  counter_min: number | null; 
-  counter_max: number | null; 
+  counter: number[]; 
   block_icon: string[]; 
   feature: string[]; 
-  trigger: string[]; 
+  series_id: string[];
+  trigger: string[]; // 💡 ここを追加しました
 }
 
 /**
@@ -63,9 +61,13 @@ export interface FilterState {
 export interface AppState {
   deck: DeckList;
   leaderCardId: string | null;
-} // 👈 export
+}
 
-// UIで利用する全選択肢
-export const ALL_COLORS = ['赤', '青', '緑', '紫', '黒', '黄', '多色'];
-export const ALL_RARITIES = ['C', 'UC', 'R', 'SR', 'L', 'SEC'];
-export const ALL_TYPES = ['CHARACTER', 'EVENT', 'STAGE', 'LEADER'];
+// ==========================================
+// 定数定義
+// ==========================================
+
+export const ALL_COLORS = ['赤', '緑', '青', '紫', '黒', '黄'];
+export const ALL_RARITIES = ['L', 'C', 'UC', 'R', 'SR', 'SEC', 'P'];
+export const ALL_TYPES = ['LEADER', 'CHARACTER', 'EVENT', 'STAGE'];
+export const TYPE_PRIORITY = ALL_TYPES;
